@@ -15,7 +15,7 @@ body {
 }
 
 .scene.launching-scene {
-  background: linear-gradient(to bottom, #050017 0%, #12002d 48%, #1b1148 72%, #0b1f22 100%);
+  background: linear-gradient(to bottom, #72c9ff 0%, #b7e7ff 48%, #f8d68b 72%, #8bc35a 100%);
 }
 
 #sun {
@@ -42,8 +42,8 @@ body {
 }
 
 .scene.launching-scene #sun {
-  opacity: 0;
-  transform: translateY(65vh) rotate(180deg);
+  opacity: 1;
+  transform: none;
 }
 
 #moon {
@@ -55,10 +55,10 @@ body {
   border-radius: 50%;
   background: #c9c5d3;
   box-shadow: inset -16px -12px 0 #8d8b9b, 0 0 24px rgba(214, 213, 229, 0.35);
-  z-index: 1;
+  z-index: 4;
   opacity: 0;
-  transform: translateY(-18vh);
-  transition: transform 6s ease-in-out, opacity 4s ease-in-out 1s;
+  transform: translateY(-118vh);
+  transition: transform 6.2s ease-in-out, opacity 1.2s ease-in-out;
 }
 
 #moon::before,
@@ -91,9 +91,9 @@ body {
 .sky-sweep {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 3;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent 0 40%, rgba(4, 0, 22, 0.72) 78%, rgba(4, 0, 22, 0.95) 100%);
+  background: linear-gradient(to bottom, #050017 0%, #12002d 48%, #1b1148 72%, #0b1f22 100%);
   opacity: 0;
   transform: translateY(-100%);
 }
@@ -112,7 +112,7 @@ body {
 .meadow-stars {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 4;
   pointer-events: none;
   opacity: 0;
   background-image:
@@ -122,10 +122,12 @@ body {
   background-position: 24px 35px, 90px 130px, 170px 80px;
   background-size: 160px 140px, 220px 190px, 280px 250px;
   transition: opacity 4s ease-in-out 1s;
+  transform: translateY(-100%);
 }
 
 .scene.launching-scene .meadow-stars {
   opacity: 1;
+  animation: pullNightDown 6.2s ease-in-out forwards;
 }
 
 @keyframes sunshine {
