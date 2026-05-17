@@ -1,0 +1,21 @@
+{
+  "name": "react-space",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@react-three/drei": "^9.120.0",
+    "@react-three/fiber": "^9.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "three": "^0.165.0",
+    "css-doodle": "^0.36.2"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

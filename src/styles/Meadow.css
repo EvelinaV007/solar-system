@@ -1,0 +1,188 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.scene {
+  width: 100vw;
+  height: 100vh;
+
+  background-image: radial-gradient(circle farthest-corner at 100% 0%,
+      #ffa500,
+      50%,
+      lightblue 90%);
+
+  overflow: hidden;
+  position: relative;
+
+  transition: background 4s ease;
+}
+
+.scene.night {
+  background: linear-gradient(to top, #000, #12001f);
+
+}
+
+#sun {
+  position: absolute;
+  top: 2%;
+  right: 0%;
+  font-size: 5em;
+
+  z-index: 1;
+
+  animation: sunshine 80s infinite linear;
+}
+
+@keyframes sunshine {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#forest {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+
+  z-index: 5;
+}
+
+.tree {
+  position: absolute;
+  bottom: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tree__1,
+.tree__2,
+.tree__3,
+.tree__5 {
+  width: 0;
+  height: 0;
+  border-radius: 10%;
+}
+
+.tree__5 {
+  border: 20px solid transparent;
+  border-bottom: 25px solid #a7ac5c;
+}
+
+.tree__1 {
+  border: 45px solid transparent;
+  border-bottom: 50px solid #878822;
+  margin-top: -60px;
+}
+
+.tree__2 {
+  border: 60px solid transparent;
+  border-bottom: 65px solid #4a560c;
+  margin-top: -80px;
+}
+
+.tree__3 {
+  border: 70px solid transparent;
+  border-bottom: 80px solid #303b2b;
+  margin-top: -100px;
+}
+
+.tree__4 {
+  width: 10px;
+  background: #211610;
+}
+
+#grass {
+  background-image: linear-gradient(to left, #878822, #42aa46);
+
+  position: absolute;
+  bottom: 0;
+
+  width: 100vw;
+  height: 40px;
+
+  z-index: 20;
+}
+
+#bug {
+  position: absolute;
+  bottom: 0;
+
+  transform-origin: 0% 100%;
+  transform: rotate(100deg);
+
+  animation: walk 200s infinite ease-in-out;
+}
+
+@keyframes walk {
+  to {
+    transform: translateX(102vw) rotate(90deg);
+  }
+}
+
+css-doodle {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 15;
+}
+
+/* ROCKET */
+ .rocket-wrapper {
+  position: absolute;
+
+  bottom: 45px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 100px;
+
+  cursor: pointer;
+
+  z-index: 999;
+
+  transition: transform 5s ease-in;
+}
+
+.rocket-wrapper.launching {
+  transform: translate(-50%, -140vh);
+}
+
+.rocket {
+  width: 100%;
+  display: block;
+}
+
+.fire {
+  position: absolute;
+
+  width: 35px;
+
+  left: 50%;
+  bottom: -20px;
+
+  transform: translateX(-50%);
+
+  animation: fireMove 0.15s infinite alternate;
+}
+
+@keyframes fireMove {
+  from {
+    transform: translateX(-50%) scaleY(1);
+  }
+
+  to {
+    transform: translateX(-50%) scaleY(1.25);
+  }
+} 
