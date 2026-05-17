@@ -18,7 +18,8 @@ export default function Meadow({ onNext }) {
       }
 
       :after {
-        content:@p(🦋);
+        content:@p("*");
+        color:@p(#ff477e, #7c5cff, #35d18f, #ff9f1c);
       }
 
       @random(.15) {
@@ -32,15 +33,11 @@ export default function Meadow({ onNext }) {
 
       @keyframes fly {
         0% {
-          transform:
-          translateX(@r(-20px,20px))
-          translateY(@r(-20px,20px));
+          transform: translateX(@r(-20px,20px)) translateY(@r(-20px,20px));
         }
 
         50% {
-          transform:
-          translateX(@r(-200px,200px))
-          translateY(@r(-300px,-100px));
+          transform: translateX(@r(-200px,200px)) translateY(@r(-300px,-100px));
         }
 
         100% {
@@ -51,7 +48,7 @@ export default function Meadow({ onNext }) {
         }
 
         function generateTree(height, position) {
-            let template = `
+            const template = `
         <div class="tree__5"></div>
         <div class="tree__1"></div>
         <div class="tree__2"></div>
@@ -59,7 +56,7 @@ export default function Meadow({ onNext }) {
         <div class="tree__4" style="height:${height}px"></div>
       `;
 
-            let el = document.createElement("div");
+            const el = document.createElement("div");
 
             el.className = "tree";
             el.style.left = `${position}%`;
@@ -71,11 +68,11 @@ export default function Meadow({ onNext }) {
         function initForest() {
             forest.innerHTML = "";
 
-            let density = Math.floor(window.innerWidth / 10);
+            const density = Math.floor(window.innerWidth / 10);
 
             for (let i = 0; i < density; i++) {
-                let pos = Math.random() * 120 - 20;
-                let hei = Math.floor(Math.random() * 250) + 50;
+                const pos = Math.random() * 120 - 20;
+                const hei = Math.floor(Math.random() * 250) + 50;
 
                 forest.appendChild(generateTree(hei, pos));
             }
@@ -84,7 +81,6 @@ export default function Meadow({ onNext }) {
         }
 
         initForest();
-
         window.addEventListener("resize", initForest);
 
         return () => {
@@ -99,35 +95,43 @@ export default function Meadow({ onNext }) {
 
         setTimeout(() => {
             if (onNext) onNext();
-        }, 5000);
+        }, 6500);
     };
 
     return (
-        <div className={`scene ${isLaunched ? "night" : ""}`}>
-            <div id="sun">🌞</div>
+        <div className={`scene ${isLaunched ? "launching-scene" : ""}`}>
+            <div className="sky-sweep"></div>
+            <div className="meadow-stars"></div>
+            <div id="sun" aria-hidden="true"></div>
+            <div id="moon" aria-hidden="true"></div>
 
             <div id="forest"></div>
 
-            {/* РАКЕТА ТЕПЕР ПОВЕРХ ДЕРЕВ */}
             <div
                 className={`rocket-wrapper ${isLaunched ? "launching" : ""}`}
                 onClick={handleLaunch}
+                role="button"
+                aria-label="Launch rocket"
             >
-                <img
-                    className="rocket"
-                    src="https://stivs.dev/assets/rocket/rocket.svg"
-                    alt="rocket"
-                />
-
-                <img
-                    className="fire"
-                    src="https://stivs.dev/assets/rocket/fire.svg"
-                    alt="fire"
-                />
+                <div className="rocket-hint">Нажми на ракету, щоб полетіти у космос!</div>
+                <div className="rocket">
+                    <div className="rocket-nose"></div>
+                    <div className="rocket-body"></div>
+                    <div className="rocket-window"></div>
+                    <div className="rocket-fin rocket-fin-left"></div>
+                    <div className="rocket-fin rocket-fin-right"></div>
+                    <div className="rocket-nozzle"></div>
+                </div>
+                <div className="fire">
+                    <span></span>
+                </div>
+                <div className="smoke smoke-one"></div>
+                <div className="smoke smoke-two"></div>
+                <div className="smoke smoke-three"></div>
             </div>
 
             <div id="grass">
-                <div id="bug">🐞</div>
+                <div id="bug"></div>
             </div>
 
             <css-doodle id="dood"></css-doodle>

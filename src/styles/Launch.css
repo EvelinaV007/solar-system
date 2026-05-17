@@ -1,15 +1,180 @@
 body,
 html {
-    margin: 0;
-    height: 100%;
-    background: radial-gradient(circle at center, #200030, #000);
-    overflow: hidden;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
-#canvas {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
+.space-launch {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  perspective: 10rem;
+  background:
+    radial-gradient(circle at 52% 42%, rgba(104, 35, 117, 0.28), transparent 34%),
+    linear-gradient(180deg, #1a032b 0%, #08000f 100%);
+}
+
+.solo-rocket-wrap {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 150px;
+  height: 330px;
+  transform: translate(-50%, -50%);
+  animation: soloFloat 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes soloFloat {
+  from {
+    transform: translate(-50%, -53%) rotate(-1deg);
+  }
+
+  to {
+    transform: translate(-50%, -47%) rotate(1deg);
+  }
+}
+
+.solo-rocket {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 96px;
+  height: 195px;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.3));
+}
+
+.solo-rocket-nose {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 92px;
+  height: 70px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 9px 9px;
+  background: linear-gradient(135deg, #ff315b, #c80b38 72%);
+}
+
+.solo-rocket-body {
+  position: absolute;
+  left: 50%;
+  top: 55px;
+  width: 92px;
+  height: 118px;
+  transform: translateX(-50%);
+  border-radius: 22px 22px 20px 20px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.18) 34%, transparent 58%),
+    linear-gradient(to bottom, #fff6ff 0 56%, #ff2756 57% 100%);
+  box-shadow: inset -20px 0 24px rgba(42, 0, 75, 0.22);
+}
+
+.solo-rocket-window {
+  position: absolute;
+  top: 68px;
+  right: 0;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  z-index: 2;
+  background: radial-gradient(circle at 35% 30%, #d9f8ff 0 22%, #6b59ee 45%, #190046 100%);
+  border: 8px solid #2c0a6d;
+}
+
+.solo-rocket-fin {
+  position: absolute;
+  bottom: 10px;
+  width: 34px;
+  height: 76px;
+  background: linear-gradient(160deg, #4a2190, #19003e 72%);
+}
+
+.solo-rocket-fin-left {
+  left: -15px;
+  border-radius: 25px 7px 18px 28px;
+  transform: rotate(7deg);
+}
+
+.solo-rocket-fin-right {
+  right: -15px;
+  border-radius: 7px 25px 28px 18px;
+  transform: rotate(-7deg);
+}
+
+.solo-rocket-nozzle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50px;
+  height: 24px;
+  transform: translateX(-50%);
+  border-radius: 0 0 16px 16px;
+  background: repeating-linear-gradient(90deg, #2a2034 0 5px, #756174 5px 9px);
+}
+
+.solo-fire {
+  position: absolute;
+  left: 50%;
+  top: 178px;
+  width: 76px;
+  height: 190px;
+  transform-origin: top center;
+  transform: translateX(-50%) rotate3d(1, 0, 0, 60deg);
+  filter: drop-shadow(0 0 28px rgba(255, 48, 98, 0.78));
+}
+
+.solo-fire span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 48% 52% 58% 42% / 18% 18% 82% 82%;
+  background:
+    radial-gradient(circle at 50% 22%, #fff5a9 0 17%, transparent 18%),
+    linear-gradient(to bottom, #ffe85c 0%, #ff7b1a 38%, #ff2457 75%, rgba(255, 36, 87, 0) 100%);
+  animation: soloWhoosh 0.8s linear infinite both;
+}
+
+@keyframes soloWhoosh {
+  from {
+    transform: translateY(-10%) scaleX(0.85);
+  }
+
+  to {
+    transform: translateY(0) scaleX(1.1);
+  }
+}
+
+.speed-line {
+  position: absolute;
+  width: 0.9rem;
+  height: 9rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.22);
+  animation: raining 2.7s linear infinite both;
+}
+
+.speed-line-1 { left: 7%; top: 5%; animation-duration: 2.1s; }
+.speed-line-2 { left: 15%; top: 45%; animation-duration: 3.2s; }
+.speed-line-3 { left: 24%; top: 14%; animation-duration: 2.8s; }
+.speed-line-4 { left: 31%; top: 72%; animation-duration: 2.2s; }
+.speed-line-5 { left: 39%; top: -8%; animation-duration: 3.4s; }
+.speed-line-6 { right: 42%; top: 24%; animation-duration: 2.5s; }
+.speed-line-7 { right: 35%; top: 67%; animation-duration: 3.1s; }
+.speed-line-8 { right: 27%; top: 12%; animation-duration: 2.4s; }
+.speed-line-9 { right: 18%; top: 50%; animation-duration: 3.3s; }
+.speed-line-10 { right: 6%; top: 21%; animation-duration: 2.7s; }
+.speed-line-11 { left: 4%; top: 77%; animation-duration: 3.5s; }
+.speed-line-12 { left: 57%; top: 4%; animation-duration: 2.3s; }
+.speed-line-13 { left: 68%; top: 81%; animation-duration: 3s; }
+.speed-line-14 { right: 2%; top: 76%; animation-duration: 2.2s; }
+
+@keyframes raining {
+  from {
+    transform: translateY(-120vh);
+  }
+
+  to {
+    transform: translateY(120vh);
+  }
 }
