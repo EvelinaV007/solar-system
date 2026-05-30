@@ -145,32 +145,34 @@ html {
 .solo-fire {
   position: absolute;
   left: 50%;
-  top: 184px;
-  width: 62px;
-  height: 285px;
+  top: 188px;
+  width: 66px;
+  height: 168px;
   transform-origin: top center;
-  transform: translateX(-50%) rotate3d(1, 0, 0, 60deg);
+  transform: translateX(-50%);
   z-index: 1;
-  filter: drop-shadow(0 0 38px rgba(255, 48, 98, 0.82));
+  filter: blur(0.2px) drop-shadow(0 0 24px rgba(255, 75, 36, 0.8));
 }
 
 .solo-fire span {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 48% 52% 58% 42% / 18% 18% 82% 82%;  background:
-    radial-gradient(circle at 50% 14%, #fff5a9 0 14%, transparent 15%),
-    linear-gradient(to bottom, #ffe85c 0%, #ff7b1a 32%, #ff2457 72%, rgba(255, 36, 87, 0) 100%);
-  animation: soloWhoosh 0.8s linear infinite both;
+  border-radius: 48% 52% 58% 42% / 18% 18% 82% 82%;
+  background:
+    radial-gradient(circle at 50% 22%, #fff5a9 0 18%, transparent 19%),
+    linear-gradient(to bottom, #ffe85c 0%, #ff7b1a 42%, #ff2457 75%, rgba(255, 36, 87, 0) 100%);
+  transform-origin: top center;
+  animation: soloWhoosh 0.16s infinite alternate;
 }
 
 @keyframes soloWhoosh {
   from {
-    transform: translateY(-10%) scaleX(0.85);
+    transform: scaleX(0.78) scaleY(0.92);
   }
 
   to {
-    transform: translateY(0) scaleX(1.1);
+    transform: scaleX(1.08) scaleY(1.18);
   }
 }
 
