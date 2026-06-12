@@ -6,12 +6,13 @@ body {
 }
 
 .scene {
+  --space-change-delay: 2.6s;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   position: relative;
   background: linear-gradient(to bottom, #72c9ff 0%, #b7e7ff 48%, #f8d68b 72%, #8bc35a 100%);
-  transition: background 6s ease-in-out;
+  transition: background 6.2s ease-in-out;
 }
 
 .scene.launching-scene {
@@ -28,7 +29,9 @@ body {
   background: #ffd039;
   box-shadow: 0 0 0 14px #ff8a1d, 0 0 28px rgba(255, 163, 36, 0.7);
   z-index: 1;
-  transition: transform 6s ease-in-out, opacity 4s ease-in-out;
+  transition:
+    transform 2s ease-in-out var(--space-change-delay),
+    opacity 1.7s ease-in-out var(--space-change-delay);
 }
 
 #sun::before {
@@ -42,8 +45,8 @@ body {
 }
 
 .scene.launching-scene #sun {
-  opacity: 1;
-  transform: none;
+  opacity: 0;
+  transform: translateY(38vh) rotate(120deg) scale(0.82);
 }
 
 #moon {
@@ -57,8 +60,10 @@ body {
   box-shadow: inset -16px -12px 0 #8d8b9b, 0 0 24px rgba(214, 213, 229, 0.35);
   z-index: 4;
   opacity: 0;
-  transform: translateY(-118vh);
-  transition: transform 6.2s ease-in-out, opacity 1.2s ease-in-out;
+  transform: translateY(-18vh) scale(0.86);
+  transition:
+    transform 2s ease-in-out var(--space-change-delay),
+    opacity 1.7s ease-in-out var(--space-change-delay);
 }
 
 #moon::before,
@@ -85,7 +90,7 @@ body {
 
 .scene.launching-scene #moon {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .sky-sweep {
@@ -95,18 +100,11 @@ body {
   pointer-events: none;
   background: linear-gradient(to bottom, #050017 0%, #12002d 48%, #1b1148 72%, #0b1f22 100%);
   opacity: 0;
-  transform: translateY(-100%);
+  transition: opacity 2.2s ease-in-out var(--space-change-delay);
 }
 
 .scene.launching-scene .sky-sweep {
-  animation: pullNightDown 6.2s ease-in-out forwards;
-}
-
-@keyframes pullNightDown {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  opacity: 1;
 }
 
 .meadow-stars {
@@ -121,13 +119,11 @@ body {
     radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.3px);
   background-position: 24px 35px, 90px 130px, 170px 80px;
   background-size: 160px 140px, 220px 190px, 280px 250px;
-  transition: opacity 4s ease-in-out 1s;
-  transform: translateY(-100%);
+  transition: opacity 1.9s ease-in-out var(--space-change-delay);
 }
 
 .scene.launching-scene .meadow-stars {
   opacity: 1;
-  animation: pullNightDown 6.2s ease-in-out forwards;
 }
 
 @keyframes sunshine {
@@ -142,11 +138,16 @@ body {
   height: 100%;
   bottom: 0;
   z-index: 5;
-  transition: filter 6s ease-in-out;
+  transition:
+    opacity 1.7s ease-in-out var(--space-change-delay),
+    filter 1.8s ease-in-out var(--space-change-delay),
+    transform 2s ease-in-out var(--space-change-delay);
 }
 
 .scene.launching-scene #forest {
-  filter: brightness(0.42) saturate(0.65);
+  opacity: 0;
+  filter: brightness(0.35) saturate(0.55) blur(2px);
+  transform: translateY(105vh);
 }
 
 .tree {
@@ -201,11 +202,16 @@ body {
   width: 100vw;
   height: 40px;
   z-index: 20;
-  transition: filter 6s ease-in-out;
+  transition:
+    opacity 1.7s ease-in-out var(--space-change-delay),
+    filter 1.8s ease-in-out var(--space-change-delay),
+    transform 2s ease-in-out var(--space-change-delay);
 }
 
 .scene.launching-scene #grass {
-  filter: brightness(0.45) saturate(0.75);
+  opacity: 0;
+  filter: brightness(0.35) saturate(0.55) blur(2px);
+  transform: translateY(80px);
 }
 
 #bug {
@@ -232,7 +238,7 @@ css-doodle {
   height: 100%;
   pointer-events: none;
   z-index: 15;
-  transition: opacity 2s ease;
+  transition: opacity 1.4s ease var(--space-change-delay);
 }
 
 .scene.launching-scene css-doodle {
@@ -299,12 +305,16 @@ css-doodle {
     transform: translateX(-50%) translateY(0) scale(1);
   }
 
-  14% {
+  18% {
     transform: translateX(-50%) translateY(-34px) scale(1.03);
   }
 
+  48% {
+    transform: translateX(-50%) translateY(-38vh) scale(0.9);
+  }
+
   100% {
-    transform: translateX(-50%) translateY(-132vh) scale(0.72);
+    transform: translateX(-50%) translateY(-56vh) scale(0.78);
   }
 }
 
@@ -316,42 +326,48 @@ css-doodle {
   height: 174px;
   transform: translateX(-50%);
   filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.25));
+  z-index: 2;
 }
 
 .rocket-nose {
   position: absolute;
-  top: 0;
+  top: -10px;
   left: 50%;
   width: 82px;
-  height: 62px;
+  height: 68px;
   transform: translateX(-50%);
-  border-radius: 50% 50% 8px 8px;
-  background: linear-gradient(135deg, #ff315b 0%, #c80b38 72%);
+  border-radius: 50% 50% 8px 8px / 86% 86% 8px 8px;
+  background:
+    radial-gradient(circle at 36% 18%, rgba(255, 100, 132, 0.72), transparent 26%),
+    linear-gradient(135deg, #ff315b 0%, #c80b38 72%);
   box-shadow: inset -14px -4px 18px rgba(53, 0, 38, 0.22);
+  z-index: 2;
 }
 
 .rocket-body {
   position: absolute;
   left: 50%;
-  top: 49px;
+  top: 52px;
   width: 82px;
   height: 105px;
   transform: translateX(-50%);
-  border-radius: 20px 20px 18px 18px;
+  border-radius: 0 0 18px 18px;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.18) 34%, transparent 58%),
     linear-gradient(to bottom, #fff6ff 0 56%, #ff2756 57% 100%);
   box-shadow: inset -19px 0 23px rgba(42, 0, 75, 0.2);
+  z-index: 1;
 }
 
 .rocket-window {
   position: absolute;
-  top: 60px;
-  right: 4px;
+  top: 64px;
+  left: 50%;
   width: 30px;
   height: 30px;
+  transform: translateX(-50%);
   border-radius: 50%;
-  z-index: 2;
+  z-index: 3;
   background: radial-gradient(circle at 35% 30%, #d9f8ff 0 22%, #5a3fd6 45%, #190046 100%);
   border: 7px solid #2c0a6d;
 }
@@ -392,9 +408,10 @@ css-doodle {
   width: 66px;
   height: 150px;
   left: 50%;
-  bottom: -6px;
+  bottom: -58px;
   transform: translateX(-50%);
   opacity: 0;
+  z-index: 1;
   pointer-events: none;
   filter: blur(0.2px) drop-shadow(0 0 24px rgba(255, 75, 36, 0.8));
 }

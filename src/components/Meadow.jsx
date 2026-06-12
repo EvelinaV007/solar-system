@@ -95,7 +95,7 @@ export default function Meadow({ onNext }) {
 
         setTimeout(() => {
             if (onNext) onNext();
-        }, 6500);
+        }, 5800);
     };
 
     return (
