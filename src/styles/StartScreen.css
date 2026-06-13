@@ -17,7 +17,7 @@ body {
   align-items: center;
 }
 
-/* ЗІРКИ */
+/* STARS */
 
 html::before,
 html::after,
@@ -104,7 +104,7 @@ body::after {
     54vw 34vh 0.1vmin rgba(200, 255, 230, 0.7);
 }
 
-/* ОСНОВНИЙ ЕКРАН */
+/* MAIN SCREEN */
 
 .stars {
   width: 100%;
@@ -200,7 +200,7 @@ em.planet.right {
   }
 }
 
-/* ТЕКСТ */
+/* TEXT */
 
 .tip {
   position: absolute;
@@ -211,4 +211,10 @@ em.planet.right {
   letter-spacing: 4px;
 
   color: #777;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.tip:hover {
+  color: #fff;
+  transform: translateX(4px);
 }

@@ -13,7 +13,7 @@ export default function App() {
         case "launch":
             return <Launch onNext={() => setStage("solarsystem")} />;
         case "solarsystem":
-            return <SolarSystem />;
+            return <SolarSystem onRestart={() => setStage("start")} />;
         default:
             return null;
     }

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import "../styles/Meadow.css";
-import "css-doodle";
+import { useEffect, useState } from 'react';
+import '../styles/Meadow.css';
+import 'css-doodle';
 
 export default function Meadow({ onNext }) {
-    const [isLaunched, setIsLaunched] = useState(false);
+  const [isLaunched, setIsLaunched] = useState(false);
 
-    useEffect(() => {
-        const dood = document.getElementById("dood");
-        const forest = document.getElementById("forest");
+  useEffect(() => {
+    const dood = document.getElementById('dood');
+    const forest = document.getElementById('forest');
 
-        function getCss(gridSize) {
-            return `
+    function getCss(gridSize) {
+      return `
       :doodle {
         @grid:${gridSize}/100%;
         width:100vw;
@@ -45,10 +45,10 @@ export default function Meadow({ onNext }) {
         }
       }
       `;
-        }
+    }
 
-        function generateTree(height, position) {
-            const template = `
+    function generateTree(height, position) {
+      const template = `
         <div class="tree__5"></div>
         <div class="tree__1"></div>
         <div class="tree__2"></div>
@@ -56,85 +56,85 @@ export default function Meadow({ onNext }) {
         <div class="tree__4" style="height:${height}px"></div>
       `;
 
-            const el = document.createElement("div");
+      const el = document.createElement('div');
 
-            el.className = "tree";
-            el.style.left = `${position}%`;
-            el.innerHTML = template;
+      el.className = 'tree';
+      el.style.left = `${position}%`;
+      el.innerHTML = template;
 
-            return el;
-        }
+      return el;
+    }
 
-        function initForest() {
-            forest.innerHTML = "";
+    function initForest() {
+      forest.innerHTML = '';
 
-            const density = Math.floor(window.innerWidth / 10);
+      const density = Math.floor(window.innerWidth / 10);
 
-            for (let i = 0; i < density; i++) {
-                const pos = Math.random() * 120 - 20;
-                const hei = Math.floor(Math.random() * 250) + 50;
+      for (let i = 0; i < density; i++) {
+        const pos = Math.random() * 120 - 20;
+        const hei = Math.floor(Math.random() * 250) + 50;
 
-                forest.appendChild(generateTree(hei, pos));
-            }
+        forest.appendChild(generateTree(hei, pos));
+      }
 
-            dood.update(getCss(15));
-        }
+      dood.update(getCss(15));
+    }
 
-        initForest();
-        window.addEventListener("resize", initForest);
+    initForest();
+    window.addEventListener('resize', initForest);
 
-        return () => {
-            window.removeEventListener("resize", initForest);
-        };
-    }, []);
-
-    const handleLaunch = () => {
-        if (isLaunched) return;
-
-        setIsLaunched(true);
-
-        setTimeout(() => {
-            if (onNext) onNext();
-        }, 5800);
+    return () => {
+      window.removeEventListener('resize', initForest);
     };
+  }, []);
 
-    return (
-        <div className={`scene ${isLaunched ? "launching-scene" : ""}`}>
-            <div className="sky-sweep"></div>
-            <div className="meadow-stars"></div>
-            <div id="sun" aria-hidden="true"></div>
-            <div id="moon" aria-hidden="true"></div>
+  const handleLaunch = () => {
+    if (isLaunched) return;
 
-            <div id="forest"></div>
+    setIsLaunched(true);
 
-            <div
-                className={`rocket-wrapper ${isLaunched ? "launching" : ""}`}
-                onClick={handleLaunch}
-                role="button"
-                aria-label="Launch rocket"
-            >
-                <div className="rocket-hint">Нажми на ракету, щоб полетіти у космос!</div>
-                <div className="rocket">
-                    <div className="rocket-nose"></div>
-                    <div className="rocket-body"></div>
-                    <div className="rocket-window"></div>
-                    <div className="rocket-fin rocket-fin-left"></div>
-                    <div className="rocket-fin rocket-fin-right"></div>
-                    <div className="rocket-nozzle"></div>
-                </div>
-                <div className="fire">
-                    <span></span>
-                </div>
-                <div className="smoke smoke-one"></div>
-                <div className="smoke smoke-two"></div>
-                <div className="smoke smoke-three"></div>
-            </div>
+    setTimeout(() => {
+      if (onNext) onNext();
+    }, 5800);
+  };
 
-            <div id="grass">
-                <div id="bug"></div>
-            </div>
+  return (
+    <div className={`scene ${isLaunched ? 'launching-scene' : ''}`}>
+      <div className='sky-sweep'></div>
+      <div className='meadow-stars'></div>
+      <div id='sun' aria-hidden='true'></div>
+      <div id='moon' aria-hidden='true'></div>
 
-            <css-doodle id="dood"></css-doodle>
+      <div id='forest'></div>
+
+      <div
+        className={`rocket-wrapper ${isLaunched ? 'launching' : ''}`}
+        onClick={handleLaunch}
+        role='button'
+        aria-label='Launch rocket'
+      >
+        <div className='rocket-hint'>Click the rocket to fly into space!</div>
+        <div className='rocket'>
+          <div className='rocket-nose'></div>
+          <div className='rocket-body'></div>
+          <div className='rocket-window'></div>
+          <div className='rocket-fin rocket-fin-left'></div>
+          <div className='rocket-fin rocket-fin-right'></div>
+          <div className='rocket-nozzle'></div>
         </div>
-    );
+        <div className='fire'>
+          <span></span>
+        </div>
+        <div className='smoke smoke-one'></div>
+        <div className='smoke smoke-two'></div>
+        <div className='smoke smoke-three'></div>
+      </div>
+
+      <div id='grass'>
+        <div id='bug'></div>
+      </div>
+
+      <css-doodle id='dood'></css-doodle>
+    </div>
+  );
 }

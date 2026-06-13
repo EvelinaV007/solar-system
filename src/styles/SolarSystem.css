@@ -5,9 +5,42 @@ html {
   overflow: hidden;
 }
 
+.solar-system-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+}
+
 #painting {
   display: block;
   width: 100vw;
   height: 100vh;
   cursor: crosshair;
+}
+
+.restart-button {
+  position: absolute;
+  left: 5vw;
+  bottom: 8vh;
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #777;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.restart-button:hover,
+.restart-button:focus-visible {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.restart-button:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 8px;
 }
